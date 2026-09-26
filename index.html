@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>DeepCuts — Filmmaking • Editing • Creative Direction</title>
 
   <style>
@@ -21,6 +22,7 @@
       color: #fff;
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.5;
+      overflow-x: hidden;
     }
 
     a {
@@ -28,17 +30,21 @@
       text-decoration: none;
     }
 
+    /* NAV */
+
     nav {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
       z-index: 100;
       padding: 22px 6%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(10,10,10,.75);
+      background: rgba(10, 10, 10, .75);
       backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
     }
 
     .logo {
@@ -54,6 +60,17 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
+
+    .nav-links a {
+      opacity: .8;
+      transition: .25s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    /* HERO */
 
     .hero {
       min-height: 100vh;
@@ -76,12 +93,13 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,.9),
-        rgba(0,0,0,.15) 65%,
-        rgba(0,0,0,.3)
-      );
+      background:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,.92),
+          rgba(0,0,0,.15) 65%,
+          rgba(0,0,0,.3)
+        );
       z-index: 1;
     }
 
@@ -89,7 +107,7 @@
       position: relative;
       z-index: 2;
       padding: 120px 6% 70px;
-      max-width: 900px;
+      max-width: 1000px;
     }
 
     .eyebrow {
@@ -110,7 +128,7 @@
 
     .hero p {
       font-size: 18px;
-      max-width: 620px;
+      max-width: 650px;
       color: #ddd;
       margin-bottom: 30px;
     }
@@ -135,6 +153,8 @@
       color: #000;
     }
 
+    /* SECTIONS */
+
     section {
       padding: 110px 6%;
     }
@@ -154,6 +174,8 @@
       margin-bottom: 55px;
     }
 
+    /* WORK */
+
     .work-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -163,6 +185,7 @@
     .work-card {
       background: #111;
       overflow: hidden;
+      display: block;
     }
 
     .work-card img {
@@ -200,6 +223,8 @@
       opacity: .6;
     }
 
+    /* CLIENTS */
+
     .clients {
       display: flex;
       flex-wrap: wrap;
@@ -216,6 +241,8 @@
     .client:hover {
       border-color: #fff;
     }
+
+    /* SERVICES */
 
     .services {
       display: grid;
@@ -247,6 +274,8 @@
       font-size: 14px;
     }
 
+    /* EXPERIENCE */
+
     .experience {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -271,6 +300,8 @@
       opacity: .55;
     }
 
+    /* ABOUT */
+
     .about {
       max-width: 900px;
     }
@@ -281,6 +312,8 @@
       letter-spacing: -1.5px;
       color: #ddd;
     }
+
+    /* CTA */
 
     .cta {
       text-align: center;
@@ -295,6 +328,8 @@
       margin-bottom: 35px;
     }
 
+    /* FOOTER */
+
     footer {
       padding: 30px 6%;
       border-top: 1px solid #222;
@@ -306,7 +341,10 @@
       font-size: 12px;
     }
 
+    /* MOBILE */
+
     @media (max-width: 700px) {
+
       .nav-links {
         display: none;
       }
@@ -315,11 +353,16 @@
         padding: 18px 5%;
       }
 
+      .logo {
+        font-size: 20px;
+      }
+
       .hero-content {
         padding: 100px 5% 45px;
       }
 
       h1 {
+        font-size: clamp(46px, 13vw, 75px);
         letter-spacing: -3px;
       }
 
@@ -331,17 +374,43 @@
         padding: 75px 5%;
       }
 
+      .section-title {
+        margin-bottom: 35px;
+      }
+
       .work-grid,
       .services {
         grid-template-columns: 1fr;
       }
 
+      .work-info {
+        padding: 20px;
+      }
+
+      .work-info h3 {
+        font-size: 21px;
+      }
+
       .experience {
         grid-template-columns: repeat(2, 1fr);
+        gap: 30px 18px;
+      }
+
+      .stat strong {
+        font-size: 40px;
       }
 
       .service {
         padding: 30px;
+        min-height: 200px;
+      }
+
+      .service h3 {
+        font-size: 25px;
+      }
+
+      .about p {
+        font-size: 25px;
       }
 
       .cta {
@@ -351,295 +420,626 @@
       .cta h2 {
         letter-spacing: -3px;
       }
+
+      footer {
+        padding: 25px 5%;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<nav>
-  <a href="#" class="logo">DEEP CUTS</a>
+  <!-- NAV -->
 
-  <div class="nav-links">
-    <a href="#work">Work</a>
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+  <nav>
+    <a href="#" class="logo">DEEP CUTS</a>
 
-<!-- HERO -->
-<header class="hero">
-
-  <!-- YOUR EXISTING HERO VIDEO — KEEPING IT -->
-  <video autoplay muted loop playsinline>
-    <source src="hero.mp4" type="video/mp4">
-  </video>
-
-  <div class="hero-content">
-    <div class="eyebrow">Filmmaking • Editing • Creative Direction</div>
-
-    <h1>I SHOOT.<br>I EDIT.<br>I MAKE THINGS MOVE.</h1>
-
-    <p>
-      Cinematic, high-energy visuals for brands, artists, concerts,
-      events and culture — shot and edited on iPhone.
-    </p>
-
-    <div class="buttons">
-      <a href="#work" class="btn">View Work</a>
-      <a href="#contact" class="btn">Let's Work</a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </div>
-  </div>
+  </nav>
 
-</header>
 
-<!-- WORK -->
-<section id="work">
+  <!-- HERO -->
 
-  <div class="section-label">01 — Selected Work</div>
-  <h2 class="section-title">WORK THAT<br>MOVES.</h2>
+  <header class="hero">
 
-  <div class="work-grid">
+    <video autoplay muted loop playsinline>
+      <source src="hero.mp4" type="video/mp4">
+    </video>
 
-    <a class="work-card"
-      href="https://www.instagram.com/reel/DRmnftwiGSi/"
-      target="_blank">
-      <img src="rollingloud.jpg" alt="Rolling Loud India">
-      <div class="work-info">
-        <h3>Rolling Loud India</h3>
-        <p>3-day hip-hop festival coverage and aftermovie.</p>
-        <div class="tag">Filmmaking · Editing · Event Coverage</div>
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        Filmmaking • Editing • Creative Direction
       </div>
-    </a>
 
-    <a class="work-card"
-      href="https://www.instagram.com/reel/DSP7Oj6gVh3/"
-      target="_blank">
-      <img src="bonker.jpg" alt="Red Bull Turn It Up">
-      <div class="work-info">
-        <h3>Red Bull — Turn It Up</h3>
-        <p>DJ battle night in Bangalore, shot and edited on iPhone.</p>
-        <div class="tag">Filmmaking · Aftermovie · Editing</div>
-      </div>
-    </a>
+      <h1>
+        I SHOOT.<br>
+        I EDIT.<br>
+        I MAKE THINGS MOVE.
+      </h1>
 
-    <a class="work-card"
-      href="https://www.instagram.com/reel/DGfuHuiJ9FA/"
-      target="_blank">
-      <img src="aditya.jpg" alt="Aditya Gadhvi">
-      <div class="work-info">
-        <h3>Aditya Gadhvi</h3>
-        <p>Pre-concert promotional content from planning to execution.</p>
-        <div class="tag">Creative Direction · Shoot · Edit</div>
-      </div>
-    </a>
-
-    <a class="work-card"
-      href="https://www.instagram.com/reel/DM7eZfZx2rZ/"
-      target="_blank">
-      <img src="easybuy.jpg" alt="Hopscotch Clothing">
-      <div class="work-info">
-        <h3>Hopscotch Clothing</h3>
-        <p>BTS coverage of a clothing brand commercial production.</p>
-        <div class="tag">BTS · iPhone Filmmaking · Editing</div>
-      </div>
-    </a>
-
-    <a class="work-card"
-      href="https://www.instagram.com/reel/DN8NG7ejcSZ/"
-      target="_blank">
-      <img src="aurus.jpg" alt="Bonkers Corner Rave">
-      <div class="work-info">
-        <h3>Bonkers Corner — Rave Night</h3>
-        <p>High-energy rave coverage shot and edited live on iPhone.</p>
-        <div class="tag">Live Content · Filmmaking · Editing</div>
-      </div>
-    </a>
-
-    <a class="work-card"
-      href="https://www.instagram.com/reel/DHk-0Hgz9ej/"
-      target="_blank">
-      <img src="xyxxcrew.jpg" alt="XYXX Crew">
-      <div class="work-info">
-        <h3>XYXX Crew</h3>
-        <p>Fashion content for a clothing brand and model shoot.</p>
-        <div class="tag">Fashion · Filmmaking · Editing</div>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-<!-- CLIENTS -->
-<section>
-
-  <div class="section-label">02 — Selected Clients</div>
-  <h2 class="section-title">TRUSTED<br>BY.</h2>
-
-  <div class="clients">
-    <div class="client">Red Bull</div>
-    <div class="client">Bonkers Corner</div>
-    <div class="client">Puma</div>
-    <div class="client">Fila</div>
-    <div class="client">Zee Marathi</div>
-    <div class="client">Galleries Lafayette</div>
-    <div class="client">Vero Moda</div>
-    <div class="client">XYXX</div>
-    <div class="client">Kellogg's Muesli</div>
-    <div class="client">Dove Men+Care</div>
-    <div class="client">Z5 FIFA</div>
-    <div class="client">Ekostay Villas</div>
-    <div class="client">Rio Bubbly</div>
-    <div class="client">Rio Boom</div>
-    <div class="client">Raffaello</div>
-    <div class="client">Manam Chocolate</div>
-    <div class="client">Sunfeast YiPPee</div>
-    <div class="client">Cityflo</div>
-    <div class="client">Swadesh Cafe</div>
-  </div>
-
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-
-  <div class="section-label">03 — What I Do</div>
-  <h2 class="section-title">FROM IDEA<br>TO FINAL CUT.</h2>
-
-  <div class="services">
-
-    <div class="service">
-      <div class="service-number">01</div>
-      <h3>Filmmaking</h3>
       <p>
-        Brand films, product videos, fashion shoots, artist content,
-        dance videos, concerts and social-first content.
+        Cinematic, high-energy visuals for brands, artists,
+        concerts, events and culture — shot and edited on iPhone.
       </p>
+
+      <div class="buttons">
+        <a href="#work" class="btn">View Work</a>
+        <a href="#contact" class="btn">Let's Work</a>
+      </div>
+
     </div>
 
-    <div class="service">
-      <div class="service-number">02</div>
-      <h3>Event & Live</h3>
+  </header>
+
+
+  <!-- SELECTED WORK -->
+
+  <section id="work">
+
+    <div class="section-label">
+      01 — Selected Work
+    </div>
+
+    <h2 class="section-title">
+      WORK THAT<br>
+      MOVES.
+    </h2>
+
+    <div class="work-grid">
+
+
+      <!-- 01 — ROLLING LOUD -->
+
+      <a
+        class="work-card"
+        href="https://www.instagram.com/reel/DRmnftwiGSi/"
+        target="_blank"
+      >
+
+        <img
+          src="rollingloud.jpg"
+          alt="Rolling Loud India"
+        >
+
+        <div class="work-info">
+
+          <h3>
+            Rolling Loud India
+          </h3>
+
+          <p>
+            3-day hip-hop festival coverage and aftermovie.
+          </p>
+
+          <div class="tag">
+            Filmmaking · Editing · Event Coverage
+          </div>
+
+        </div>
+
+      </a>
+
+
+      <!-- 02 — RED BULL -->
+
+      <a
+        class="work-card"
+        href="https://www.instagram.com/reel/DSP7Oj6gVh3/"
+        target="_blank"
+      >
+
+        <img
+          src="IMG_0276.jpeg"
+          alt="Red Bull Turn It Up"
+        >
+
+        <div class="work-info">
+
+          <h3>
+            Red Bull — Turn It Up
+          </h3>
+
+          <p>
+            DJ battle night in Bangalore, shot and edited on iPhone.
+          </p>
+
+          <div class="tag">
+            Filmmaking · Aftermovie · Editing
+          </div>
+
+        </div>
+
+      </a>
+
+
+      <!-- 03 — ADITYA GADHVI -->
+
+      <a
+        class="work-card"
+        href="https://www.instagram.com/reel/DGfuHuiJ9FA/"
+        target="_blank"
+      >
+
+        <img
+          src="aditya.jpg"
+          alt="Aditya Gadhvi"
+        >
+
+        <div class="work-info">
+
+          <h3>
+            Aditya Gadhvi
+          </h3>
+
+          <p>
+            Pre-concert promotional content from planning to execution.
+          </p>
+
+          <div class="tag">
+            Creative Direction · Shoot · Edit
+          </div>
+
+        </div>
+
+      </a>
+
+
+      <!-- 04 — HOPSCOTCH -->
+
+      <a
+        class="work-card"
+        href="https://www.instagram.com/reel/DM7eZfZx2rZ/"
+        target="_blank"
+      >
+
+        <img
+          src="IMG_0275.jpeg"
+          alt="Hopscotch Clothing"
+        >
+
+        <div class="work-info">
+
+          <h3>
+            Hopscotch Clothing
+          </h3>
+
+          <p>
+            BTS coverage of a clothing brand commercial production.
+          </p>
+
+          <div class="tag">
+            BTS · iPhone Filmmaking · Editing
+          </div>
+
+        </div>
+
+      </a>
+
+
+      <!-- 05 — BONKERS CORNER -->
+
+      <a
+        class="work-card"
+        href="https://www.instagram.com/reel/DN8NG7ejcSZ/"
+        target="_blank"
+      >
+
+        <img
+          src="bonker.jpg"
+          alt="Bonkers Corner Rave Night"
+        >
+
+        <div class="work-info">
+
+          <h3>
+            Bonkers Corner — Rave Night
+          </h3>
+
+          <p>
+            High-energy rave coverage shot and edited live on iPhone.
+          </p>
+
+          <div class="tag">
+            Live Content · Filmmaking · Editing
+          </div>
+
+        </div>
+
+      </a>
+
+
+      <!-- 06 — XYXX -->
+
+      <a
+        class="work-card"
+        href="https://www.instagram.com/reel/DHk-0Hgz9ej/"
+        target="_blank"
+      >
+
+        <img
+          src="xyxxcrew.jpg"
+          alt="XYXX Crew"
+        >
+
+        <div class="work-info">
+
+          <h3>
+            XYXX Crew
+          </h3>
+
+          <p>
+            Fashion content shot on iPhone and edited for a clothing brand.
+          </p>
+
+          <div class="tag">
+            Fashion · Filmmaking · Editing
+          </div>
+
+        </div>
+
+      </a>
+
+
+      <!-- 07 — HYROX -->
+
+      <a
+        class="work-card"
+        href="https://www.instagram.com/reel/DdiuPDmC0Wv/"
+        target="_blank"
+      >
+
+        <img
+          src="IMG_0278.jpeg"
+          alt="HYROX Fitness — Angela"
+        >
+
+        <div class="work-info">
+
+          <h3>
+            HYROX — Angela
+          </h3>
+
+          <p>
+            Fitness content shot and edited for a HYROX training video.
+          </p>
+
+          <div class="tag">
+            Filmmaking · Editing · Fitness Content
+          </div>
+
+        </div>
+
+      </a>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- CLIENTS -->
+
+  <section>
+
+    <div class="section-label">
+      02 — Selected Clients
+    </div>
+
+    <h2 class="section-title">
+      TRUSTED<br>
+      BY.
+    </h2>
+
+    <div class="clients">
+
+      <div class="client">Red Bull</div>
+      <div class="client">Bonkers Corner</div>
+      <div class="client">Puma</div>
+      <div class="client">Fila</div>
+      <div class="client">Zee Marathi</div>
+      <div class="client">Galleries Lafayette</div>
+      <div class="client">Vero Moda</div>
+      <div class="client">XYXX</div>
+      <div class="client">Kellogg's Muesli</div>
+      <div class="client">Dove Men+Care</div>
+      <div class="client">Z5 FIFA</div>
+      <div class="client">Ekostay Villas</div>
+      <div class="client">Rio Bubbly</div>
+      <div class="client">Rio Boom</div>
+      <div class="client">Raffaello</div>
+      <div class="client">Manam Chocolate</div>
+      <div class="client">Sunfeast YiPPee</div>
+      <div class="client">Cityflo</div>
+      <div class="client">Swadesh Cafe</div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SERVICES -->
+
+  <section id="services">
+
+    <div class="section-label">
+      03 — What I Do
+    </div>
+
+    <h2 class="section-title">
+      FROM IDEA<br>
+      TO FINAL CUT.
+    </h2>
+
+    <div class="services">
+
+
+      <div class="service">
+
+        <div class="service-number">
+          01
+        </div>
+
+        <h3>
+          Filmmaking
+        </h3>
+
+        <p>
+          Brand films, product videos, fashion and model shoots,
+          artist content, dance videos, concerts and social-first content.
+        </p>
+
+      </div>
+
+
+      <div class="service">
+
+        <div class="service-number">
+          02
+        </div>
+
+        <h3>
+          Event & Live
+        </h3>
+
+        <p>
+          Concerts, festivals, aftermovies, highlights, recaps,
+          private events and high-energy live coverage.
+        </p>
+
+      </div>
+
+
+      <div class="service">
+
+        <div class="service-number">
+          03
+        </div>
+
+        <h3>
+          Editing
+        </h3>
+
+        <p>
+          Fast-cut, cinematic, music-driven edits, BTS,
+          social content and performance-focused visuals.
+        </p>
+
+      </div>
+
+
+      <div class="service">
+
+        <div class="service-number">
+          04
+        </div>
+
+        <h3>
+          Creative Direction
+        </h3>
+
+        <p>
+          Concepts, shot planning, movement, angles, transitions
+          and visual direction from idea to execution.
+        </p>
+
+      </div>
+
+
+      <div class="service">
+
+        <div class="service-number">
+          05
+        </div>
+
+        <h3>
+          BTS Content
+        </h3>
+
+        <p>
+          Behind-the-scenes coverage for brand films, commercials,
+          entertainment productions and creative shoots.
+        </p>
+
+      </div>
+
+
+      <div class="service">
+
+        <div class="service-number">
+          06
+        </div>
+
+        <h3>
+          Social Content
+        </h3>
+
+        <p>
+          Reels and short-form visuals built around movement,
+          rhythm, storytelling and platform-first attention.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- EXPERIENCE -->
+
+  <section>
+
+    <div class="section-label">
+      04 — Experience
+    </div>
+
+    <h2 class="section-title">
+      BUILT THROUGH<br>
+      MOVEMENT.
+    </h2>
+
+    <div class="experience">
+
+
+      <div class="stat">
+        <strong>14+</strong>
+        <span>Years — Dance & Movement</span>
+      </div>
+
+
+      <div class="stat">
+        <strong>6+</strong>
+        <span>Years — Filmmaking</span>
+      </div>
+
+
+      <div class="stat">
+        <strong>5+</strong>
+        <span>Years — Editing</span>
+      </div>
+
+
+      <div class="stat">
+        <strong>6+</strong>
+        <span>Years — Creative Direction</span>
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="section-label">
+      05 — About
+    </div>
+
+    <div class="about">
+
       <p>
-        Concerts, festivals, aftermovies, highlights, recaps,
-        private events and high-energy live coverage.
+
+        I'm Deepak — filmmaker, editor and creative director
+        behind DeepCuts, based in Mumbai.
+
+        <br><br>
+
+        My creative journey started with movement.
+        With 14+ years in dance, I've spent years understanding
+        rhythm, energy and performance.
+
+        <br><br>
+
+        I took that understanding behind the camera —
+        creating content for brands, artists, events and culture,
+        from shooting and editing to creative direction and execution.
+
+        <br><br>
+
+        Most of my work is shot and edited on iPhone.
+        Because great storytelling isn't always about the biggest setup.
+        It's about knowing what to capture.
+
       </p>
+
     </div>
 
-    <div class="service">
-      <div class="service-number">03</div>
-      <h3>Editing</h3>
-      <p>
-        Fast-cut, cinematic, music-driven edits, BTS,
-        social content and performance-focused visuals.
-      </p>
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section id="contact" class="cta">
+
+    <div class="section-label">
+      06 — Contact
     </div>
 
-    <div class="service">
-      <div class="service-number">04</div>
-      <h3>Creative Direction</h3>
-      <p>
-        Concepts, shot planning, movement, angles, transitions
-        and visual direction from idea to execution.
-      </p>
+    <h2>
+      GOT A PROJECT?<br>
+      LET'S MAKE IT MOVE.
+    </h2>
+
+    <div
+      class="buttons"
+      style="justify-content:center;"
+    >
+
+      <a
+        class="btn"
+        href="mailto:trickstuffwork@gmail.com"
+      >
+        Email Me
+      </a>
+
+
+      <a
+        class="btn"
+        href="https://wa.me/918169048232"
+        target="_blank"
+      >
+        WhatsApp
+      </a>
+
+
+      <a
+        class="btn"
+        href="https://www.instagram.com/deepcuts.edit/"
+        target="_blank"
+      >
+        @deepcuts.edit
+      </a>
+
     </div>
 
-  </div>
-</section>
+  </section>
 
-<!-- EXPERIENCE -->
-<section>
 
-  <div class="section-label">04 — Experience</div>
-  <h2 class="section-title">BUILT THROUGH<br>MOVEMENT.</h2>
+  <!-- FOOTER -->
 
-  <div class="experience">
+  <footer>
 
-    <div class="stat">
-      <strong>14+</strong>
-      <span>Years — Dance & Movement</span>
-    </div>
+    <span>
+      © 2026 DEEP CUTS
+    </span>
 
-    <div class="stat">
-      <strong>6+</strong>
-      <span>Years — Filmmaking</span>
-    </div>
+    <span>
+      Filmmaking • Editing • Creative Direction
+    </span>
 
-    <div class="stat">
-      <strong>5+</strong>
-      <span>Years — Editing</span>
-    </div>
+  </footer>
 
-    <div class="stat">
-      <strong>6+</strong>
-      <span>Years — Creative</span>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-
-  <div class="section-label">05 — About</div>
-
-  <div class="about">
-    <p>
-      I'm Deepak — filmmaker, editor and creative director behind
-      DeepCuts, based in Mumbai.
-      <br><br>
-      My creative journey started with movement. With 14+ years in
-      dance, I've spent years understanding rhythm, energy and
-      performance.
-      <br><br>
-      I took that understanding behind the camera — creating content
-      for brands, artists, events and culture, from shooting and
-      editing to creative direction and execution.
-      <br><br>
-      Most of my work is shot and edited on iPhone. Because great
-      storytelling isn't always about the biggest setup. It's about
-      knowing what to capture.
-    </p>
-  </div>
-
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="cta">
-
-  <div class="section-label">06 — Contact</div>
-
-  <h2>GOT A PROJECT?<br>LET'S MAKE IT MOVE.</h2>
-
-  <div class="buttons" style="justify-content:center;">
-
-    <a class="btn"
-      href="mailto:trickstuffwork@gmail.com">
-      Email Me
-    </a>
-
-    <a class="btn"
-      href="https://wa.me/918169048232"
-      target="_blank">
-      WhatsApp
-    </a>
-
-    <a class="btn"
-      href="https://www.instagram.com/deepcuts.edit/"
-      target="_blank">
-      @deepcuts.edit
-    </a>
-
-  </div>
-
-</section>
-
-<footer>
-  <span>© 2026 DEEP CUTS</span>
-  <span>Filmmaking • Editing • Creative Direction</span>
-</footer>
 
 </body>
 </html>
